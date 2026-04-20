@@ -3,15 +3,16 @@
     <div class="container vh-100">
         <div class="row d-flex h-75 align-content-center justify-content-center">
             <div class="col-12 col-md-6">
-                <form action="{{route('article.store')}}" method="POST">
+                <form action="{{route('article.update' , compact('article'))}}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input name="title" type="text" class="form-control" id="title">
+                        <input name="title" type="text" class="form-control" id="title" placeholder="{{$article->title}}">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" type="text" class="form-control" id="description"></textarea>
+                        <textarea name="description" type="text" class="form-control" id="description" placeholder="{{$article->description}}"></textarea>
                     </div>
                     <div class="container">
                         <div class="row d-flex align-content-center justify-content-center">

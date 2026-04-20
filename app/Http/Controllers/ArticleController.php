@@ -31,7 +31,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $article = Article::create([
+        'title' => $request->title,
+        'description' => $request->description,
+        ]);
+
+        $article->tags()->attach($request->tag);
+
+        return redirect()->back();
     }
 
     /**
@@ -39,15 +47,16 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('article.show' , compact('article'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Article $article)
-    {
-        //
+    {   
+        $tags = Tag::all();
+        return view('article.edit' , ['article'=>$article , 'tags'=>$tags]);
     }
 
     /**
@@ -55,7 +64,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->update($request->all());
+        $article->tags()->sync($request->tags ?? []);
+
+        return redirect()->route('article.index')->with('status', 'Articolo aggiornato!');
     }
 
     /**
