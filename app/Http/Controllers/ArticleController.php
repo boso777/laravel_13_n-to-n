@@ -12,9 +12,10 @@ class ArticleController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        $tags = Tag::all();
         $articles = Article::all();
-        return view('article.index' , compact('articles'));
+        return view('article.index' , ['tags'=>$tags , 'articles'=>$articles]);
     }
 
     /**
@@ -63,8 +64,10 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Article $article)
-    {
+    {   
+
         $article->update($request->all());
+        
         $article->tags()->sync($request->tags ?? []);
 
         return redirect()->route('article.index')->with('status', 'Articolo aggiornato!');
@@ -75,6 +78,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect(route('article.index'))->with('message' , 'articolo eliminato correttamente');
     }
 }
