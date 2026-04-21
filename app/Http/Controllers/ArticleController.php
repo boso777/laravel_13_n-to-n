@@ -37,10 +37,10 @@ class ArticleController extends Controller
         'title' => $request->title,
         'description' => $request->description,
         ]);
-
+        
         $article->tags()->attach($request->tag);
 
-        return redirect()->back();
+        return redirect()->route('article.index')->with('status', 'Articolo aggiunto!');
     }
 
     /**
@@ -68,7 +68,7 @@ class ArticleController extends Controller
 
         $article->update($request->all());
         
-        $article->tags()->sync($request->tags ?? []);
+        $article->tags()->sync($request->tag);
 
         return redirect()->route('article.index')->with('status', 'Articolo aggiornato!');
     }
@@ -78,6 +78,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $article->tags()->detach();
+
         $article->delete();
         return redirect(route('article.index'))->with('message' , 'articolo eliminato correttamente');
     }

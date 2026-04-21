@@ -20,7 +20,15 @@
                                 <input name='tag[]' value="{{$tag->id}}" type="checkbox" class="form-check-input" id="{{$tag->id}}">
                                 <label class="form-check-label" for="{{$tag->tag}}">{{$tag->tag}}</label>
                             </div>
-                            @endforeach                    
+                            @endforeach
+                            
+                            <div class="container">
+                                <div class="row d-flex align-content-center justify-content-center">
+                                    <div class="col-12 text-end">
+                                        <a class="a-link" href="{{route('tag.create')}}">Create New Tag</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     

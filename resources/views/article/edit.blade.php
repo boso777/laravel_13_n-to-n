@@ -8,11 +8,11 @@
                     @method('PUT')
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input name="title" type="text" class="form-control" id="title" placeholder="{{$article->title}}">
+                        <input name="title" type="text" class="form-control" id="title" value="{{$article->title}}">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" type="text" class="form-control" id="description" placeholder="{{$article->description}}"></textarea>
+                        <textarea name="description" type="text" class="form-control" id="description" >{{$article->description}}</textarea>
                     </div>
                     <div class="container">
                         <div class="row d-flex align-content-center justify-content-center">

@@ -17,6 +17,8 @@
           <a class="nav-link" href="{{route('article.create')}}">Add new</a>
         </li>
       </ul>
+
+     
       
     </div>
   </div>
