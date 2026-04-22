@@ -16,12 +16,16 @@
                     </div>
                     <div class="container">
                         <div class="row d-flex align-content-center justify-content-center">
+
                             @foreach ($tags as $tag)
                             <div class="mb-3 form-check col-3">
-                                <input name='tag[]' value="{{$tag->id}}" type="checkbox" class="form-check-input" id="{{$tag->id}}">
+
+                                <input name='tag[]' value="{{$tag->id}}" type="checkbox" class="form-check-input" id="{{$tag->id}}" @if($article->tags->contains($tag->id)) checked @endif>
                                 <label class="form-check-label" for="{{$tag->tag}}">{{$tag->tag}}</label>
+
                             </div>
-                            @endforeach                    
+                            @endforeach     
+
                         </div>
                     </div>
                     

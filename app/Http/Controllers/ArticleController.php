@@ -56,7 +56,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {   
-        $tags = Tag::all();
+        $tags = Tag::all(); 
         return view('article.edit' , ['article'=>$article , 'tags'=>$tags]);
     }
 
